@@ -1,0 +1,48 @@
+public void realizarPedido() throws SQLException {
+        List<ItemPedido> itensPedido = new ArrayList<>();
+        Scanner scanner = new Scanner(System.in);
+
+        // Loop para receber itens do pedido
+        while (true) {
+            System.out.println("Digite o ID do produto (ou 0 para encerrar o pedido): ");
+            int idProduto = scanner.nextInt();
+
+            if (idProduto == 0) {
+                // Encerra o loop quando o usuário digita 0
+                break;
+            }
+
+            System.out.println("Digite a quantidade do produto: ");
+            int quantidade = scanner.nextInt();
+
+            ItemPedido itemPedido = new ItemPedido();
+            itemPedido.setIdProduto(idProduto);
+            itemPedido.setQuantidade(quantidade);
+
+            itensPedido.add(itemPedido);
+        }
+
+        // Se o usuário adicionou pelo menos um item, prosseguir com o pedido
+        if (!itensPedido.isEmpty()) {
+            Pedido pedido = new Pedido();
+            // Preencha os dados do pedido, se necessário
+
+            // Chama o método para cadastrar o pedido
+            cadastrarPedido(pedido, itensPedido);
+        } else {
+            System.out.println("Pedido cancelado, nenhum item adicionado.");
+        }
+    }
+
+
+////////////////////////////////////////////////////////////////////////////////
+CRIAR ESSA NOVA TABELA
+
+CREATE TABLE item_pedido (
+    iditem INT AUTO_INCREMENT PRIMARY KEY,
+    idpedido INT,
+    idproduto INT,
+    quantidade INT,
+    FOREIGN KEY (idpedido) REFERENCES pedido(idpedido),
+    FOREIGN KEY (idproduto) REFERENCES produto(idproduto)
+);

@@ -1,0 +1,16 @@
+
+//tabela pessoa
+CREATE TABLE `rec`.`pessoa` (
+  `idpessoa` INT NOT NULL AUTO_INCREMENT,
+  `nome` VARCHAR(45) NOT NULL,
+  `login` VARCHAR(45) NOT NULL,
+  `senha` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idpessoa`));
+
+//tabela produto
+CREATE TABLE `rec`.`produto` (
+  `idproduto` INT NOT NULL AUTO_INCREMENT,
+  `nome_produto` VARCHAR(45) NOT NULL,
+  `quantidade_estoque` INT NOT NULL,
+  `preco` DECIMAL(10,2) NOT NULL,
+  PRIMARY KEY (`idproduto`));
